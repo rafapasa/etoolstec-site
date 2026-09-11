@@ -1,0 +1,15 @@
+.git
+.idea
+.vscode
+.dart_tool
+android
+ios
+linux
+macos
+windows
+test
+lib
+Artes
+*.md
+*.pez
+*.pdf
