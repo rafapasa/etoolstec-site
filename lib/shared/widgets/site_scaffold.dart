@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../core/constants/asset_paths.dart';
 import '../../core/theme/app_colors.dart';
 
 class SiteScaffold extends StatelessWidget {
@@ -11,6 +12,7 @@ class SiteScaffold extends StatelessWidget {
     final width = MediaQuery.sizeOf(context).width;
     final compact = width < 980;
     return Scaffold(
+      backgroundColor: AppColors.canvas,
       drawer: compact ? const _NavDrawer() : null,
       body: Column(
         children: [
@@ -40,76 +42,72 @@ class _TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.surface,
-      elevation: 0,
-      child: Container(
-        decoration: const BoxDecoration(
-          border: Border(bottom: BorderSide(color: AppColors.line)),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: compact ? 16 : 40, vertical: 12),
-        child: Row(
+      color: Colors.white,
+      child: SizedBox(
+        height: 160,
+        width: double.infinity,
+        child: Stack(
           children: [
-            InkWell(
-              onTap: () => context.go('/'),
-              child: const _BrandMark(),
+            Positioned.fill(
+              child: ColoredBox(
+                color: Colors.white,
+                child: Image.asset(
+                  AssetPaths.header,
+                  fit: BoxFit.contain,
+                  alignment: Alignment.centerLeft,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
             ),
-            const Spacer(),
-            if (!compact) ...[
-              _NavLink('Início', '/'),
-              _NavLink('Empresa', '/empresa'),
-              _NavLink('Soluções', '/solucoes'),
-              _NavLink('Conversation Commerce', '/conversation-commerce'),
-              _NavLink('Suporte', '/suporte'),
-              const SizedBox(width: 12),
-              OutlinedButton(
-                onPressed: () => context.go('/entrar'),
-                child: const Text('Área restrita'),
+            Positioned(
+              right: compact ? 8 : 28,
+              bottom: 14,
+              left: compact ? 8 : null,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  if (!compact) ...[
+                    _NavLink('Início', '/'),
+                    _NavLink('Empresa', '/empresa'),
+                    _NavLink('Soluções', '/solucoes'),
+                    _NavLink('Conversation Commerce', '/conversation-commerce'),
+                    _NavLink('Suporte', '/suporte'),
+                    const SizedBox(width: 12),
+                    OutlinedButton(
+                      onPressed: () => context.go('/entrar'),
+                      child: const Text('Área restrita'),
+                    ),
+                    const SizedBox(width: 8),
+                    FilledButton(
+                      style: FilledButton.styleFrom(backgroundColor: AppColors.brandGreen),
+                      onPressed: () => context.go('/criar-conta'),
+                      child: const Text('Criar conta'),
+                    ),
+                  ] else
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                        onPressed: () => Scaffold.of(context).openDrawer(),
+                        icon: const Icon(Icons.menu_rounded, color: AppColors.brandBlue),
+                      ),
+                    ),
+                ],
               ),
-              const SizedBox(width: 8),
-              FilledButton(
-                style: FilledButton.styleFrom(backgroundColor: AppColors.brandGreen),
-                onPressed: () => context.go('/criar-conta'),
-                child: const Text('Criar conta'),
+            ),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () => context.go('/'),
+                  child: const SizedBox(width: 280, height: 160),
+                ),
               ),
-            ] else
-              IconButton(
-                onPressed: () => Scaffold.of(context).openDrawer(),
-                icon: const Icon(Icons.menu_rounded),
-              ),
+            ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class _BrandMark extends StatelessWidget {
-  const _BrandMark();
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: 36,
-          height: 36,
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [AppColors.brandGreen, AppColors.brandBlue],
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          alignment: Alignment.center,
-          child: const Text('e', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 20)),
-        ),
-        const SizedBox(width: 10),
-        const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('eTools', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18, color: AppColors.brandBlue, height: 1)),
-            Text('TECNOLOGIA', style: TextStyle(letterSpacing: 2.2, fontSize: 10, color: AppColors.brandGray, fontWeight: FontWeight.w600)),
-          ],
-        ),
-      ],
     );
   }
 }
@@ -128,7 +126,7 @@ class _NavLink extends StatelessWidget {
         label,
         style: TextStyle(
           fontWeight: active ? FontWeight.w800 : FontWeight.w600,
-          color: active ? AppColors.brandBlue : AppColors.muted,
+          color: AppColors.brandBlue,
         ),
       ),
     );
@@ -149,7 +147,10 @@ class _NavDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          const DrawerHeader(child: _BrandMark()),
+          DrawerHeader(
+            decoration: const BoxDecoration(color: Colors.white),
+            child: Image.asset(AssetPaths.header, fit: BoxFit.contain),
+          ),
           item('Início', '/'),
           item('Empresa', '/empresa'),
           item('Soluções', '/solucoes'),
@@ -170,16 +171,25 @@ class _Footer extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: AppColors.brandBlue,
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 28),
       child: Column(
         children: [
+          Image.asset(
+            AssetPaths.footerLogo,
+            height: 64,
+            fit: BoxFit.contain,
+            filterQuality: FilterQuality.high,
+          ),
+          const SizedBox(height: 12),
           const Text(
             'Soluções inteligentes para sua empresa.',
+            textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           Text(
             '© ${DateTime.now().year} eTools Tecnologia · www.etoolstec.com.br',
+            textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white.withValues(alpha: 0.8)),
           ),
         ],
@@ -197,8 +207,25 @@ class PageShell extends StatelessWidget {
     return Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: maxWidth),
-        child: Padding(padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 36), child: child),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 36),
+          child: child,
+        ),
       ),
+    );
+  }
+}
+
+class OpenErpMark extends StatelessWidget {
+  const OpenErpMark({super.key, this.height = 72});
+  final double height;
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      AssetPaths.openerpLogo,
+      height: height,
+      fit: BoxFit.contain,
+      filterQuality: FilterQuality.high,
     );
   }
 }

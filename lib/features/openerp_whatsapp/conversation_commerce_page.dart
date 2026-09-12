@@ -12,6 +12,8 @@ class ConversationCommercePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const OpenErpMark(height: 88),
+          const SizedBox(height: 16),
           const Text('PRODUTO EM DESTAQUE', style: TextStyle(color: AppColors.brandGreen, fontWeight: FontWeight.w800, letterSpacing: 1.2)),
           const SizedBox(height: 8),
           const Text('OpenERP-WhatsApp', style: TextStyle(fontSize: 36, fontWeight: FontWeight.w800, color: AppColors.brandBlue)),

@@ -18,6 +18,7 @@ class ProductsPage extends StatelessWidget {
           const SizedBox(height: 24),
           ListTile(
             contentPadding: EdgeInsets.zero,
+            leading: const OpenErpMark(height: 44),
             title: const Text('OpenERP-WhatsApp · Conversation Commerce', style: TextStyle(fontWeight: FontWeight.w800)),
             subtitle: const Text('Comércio conversacional integrado ao ERP.'),
             trailing: const Icon(Icons.arrow_forward_rounded),
@@ -26,6 +27,7 @@ class ProductsPage extends StatelessWidget {
           const Divider(),
           const ListTile(
             contentPadding: EdgeInsets.zero,
+            leading: OpenErpMark(height: 44),
             title: Text('OpenERP', style: TextStyle(fontWeight: FontWeight.w800)),
             subtitle: Text('Gestão empresarial integrada: vendas, estoque, financeiro e processos.'),
           ),
