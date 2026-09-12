@@ -26,7 +26,7 @@ IMAGE_TAG       ?= latest
 WEB_IMAGE       := $(DOCKER_USERNAME)/etoolstec-web
 COMPOSE_WEB     := docker-compose.yml
 NO_CACHE        ?=
-HOST_PORT       ?= 8080
+HOST_PORT       ?= 8090
 
 export IMAGE_TAG
 export WEB_IMAGE

@@ -3,7 +3,7 @@ services:
     image: ${WEB_IMAGE:-rafapasa/etoolstec-web}:${IMAGE_TAG:-latest}
     container_name: etoolstec-web
     ports:
-      - "127.0.0.1:${HOST_PORT:-8080}:80"
+      - "127.0.0.1:${HOST_PORT:-8090}:80"
     restart: unless-stopped
     networks:
       - mcp-network
