@@ -14,7 +14,7 @@ class ProductsPage extends StatelessWidget {
         children: [
           const Text('Soluções', style: TextStyle(fontSize: 34, fontWeight: FontWeight.w800, color: AppColors.brandBlue)),
           const SizedBox(height: 8),
-          const Text('Tecnologia aplicada à operação e à engenharia da sua empresa.', style: TextStyle(color: AppColors.muted)),
+          const Text('Tecnologia aplicada à operação e à engenharia de software da sua empresa.', style: TextStyle(color: AppColors.muted)),
           const SizedBox(height: 24),
           ListTile(
             contentPadding: EdgeInsets.zero,
