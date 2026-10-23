@@ -112,3 +112,12 @@ git-up: ## Add commit e push
 	$(GIT) commit -m ${MSG}
 	$(GIT) push origin main
 	@echo "$(GREEN)✅ Alterações enviadas$(NC)"
+
+
+.PHONY: git-commit-push
+git-commit-push:
+	@git add -A
+	@git -c user.name="Rafael Alberto Pasa" -c user.email="rafapasa@gmail.com" commit -m "$(MSG)" || true
+	@git push -u origin HEAD || true
+	@git log -1 --oneline
+	@git status -sb
