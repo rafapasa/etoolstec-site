@@ -123,3 +123,9 @@ git-commit-push:
 	@git push -u origin HEAD || true
 	@git log -1 --oneline
 	@git status -sb
+
+.PHONY: git-diagnose
+git-diagnose:
+	@git ls-files lib/features/etoolscode lib/features/products/products_page.dart lib/core/routing/app_router.dart
+	@git log -3 --oneline -- lib/features/etoolscode lib/features/products/products_page.dart lib/core/routing/app_router.dart
+	@wc -l lib/features/etoolscode/etoolscode_page.dart lib/features/products/products_page.dart lib/core/routing/app_router.dart
