@@ -14,22 +14,38 @@ class ProductsPage extends StatelessWidget {
         children: [
           const Text('Soluções', style: TextStyle(fontSize: 34, fontWeight: FontWeight.w800, color: AppColors.brandBlue)),
           const SizedBox(height: 8),
-          const Text('Tecnologia aplicada à operação da sua empresa.', style: TextStyle(color: AppColors.muted)),
+          const Text('Tecnologia aplicada à operação e à engenharia da sua empresa.', style: TextStyle(color: AppColors.muted)),
           const SizedBox(height: 24),
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const OpenErpMark(height: 44),
-            title: const Text('OpenERP-WhatsApp · Conversation Commerce', style: TextStyle(fontWeight: FontWeight.w800)),
-            subtitle: const Text('Comércio conversacional integrado ao ERP.'),
+            title: const Text('OpenERP-WhatsApp', style: TextStyle(fontWeight: FontWeight.w800)),
+            subtitle: const Text(
+              'Integração do WhatsApp ao OpenERP para vendas e atendimento com contexto do ERP. Texto básico — conteúdo detalhado em ajuste.',
+            ),
             trailing: const Icon(Icons.arrow_forward_rounded),
             onTap: () => context.go('/conversation-commerce'),
           ),
           const Divider(),
-          const ListTile(
+          ListTile(
             contentPadding: EdgeInsets.zero,
-            leading: OpenErpMark(height: 44),
-            title: Text('OpenERP', style: TextStyle(fontWeight: FontWeight.w800)),
-            subtitle: Text('Gestão empresarial integrada: vendas, estoque, financeiro e processos.'),
+            leading: Container(
+              width: 44,
+              height: 44,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: AppColors.brandBlue.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: AppColors.line),
+              ),
+              child: const Text('</>', style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.brandBlue, fontSize: 16)),
+            ),
+            title: const Text('</> eToolsCode', style: TextStyle(fontWeight: FontWeight.w800)),
+            subtitle: const Text(
+              'Assistente de engenharia de software: issues, chat e TDD sobre o código local — com as regras do seu time.',
+            ),
+            trailing: const Icon(Icons.arrow_forward_rounded),
+            onTap: () => context.go('/etoolscode'),
           ),
           const Divider(),
           const ListTile(

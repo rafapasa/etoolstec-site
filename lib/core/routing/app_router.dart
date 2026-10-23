@@ -6,6 +6,7 @@ import '../../features/company/company_page.dart';
 import '../../features/home/home_page.dart';
 import '../../features/openerp_whatsapp/conversation_commerce_page.dart';
 import '../../features/products/products_page.dart';
+import '../../features/etoolscode/etoolscode_page.dart';
 import '../../features/restricted/restricted_page.dart';
 import '../../features/support/support_page.dart';
 import '../../shared/widgets/site_scaffold.dart';
@@ -19,6 +20,7 @@ final GoRouter appRouter = GoRouter(
         GoRoute(path: '/empresa', builder: (_, __) => const CompanyPage()),
         GoRoute(path: '/solucoes', builder: (_, __) => const ProductsPage()),
         GoRoute(path: '/conversation-commerce', builder: (_, __) => const ConversationCommercePage()),
+        GoRoute(path: '/etoolscode', builder: (_, __) => const EtoolsCodePage()),
         GoRoute(path: '/entrar', builder: (_, __) => const LoginPage()),
         GoRoute(path: '/criar-conta', builder: (_, __) => const RegisterPage()),
         GoRoute(path: '/suporte', builder: (_, __) => const SupportPage()),
