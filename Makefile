@@ -116,7 +116,9 @@ git-up: ## Add commit e push
 
 .PHONY: git-commit-push
 git-commit-push:
-	@git add -A
+	@git status -sb
+	@git add -A lib Makefile
+	@git status
 	@git -c user.name="Rafael Alberto Pasa" -c user.email="rafapasa@gmail.com" commit -m "$(MSG)" || true
 	@git push -u origin HEAD || true
 	@git log -1 --oneline
